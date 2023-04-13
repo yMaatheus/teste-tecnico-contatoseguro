@@ -1,0 +1,12 @@
+version: '3.9'
+services:
+  frontend:
+    build: .
+    ports:
+      - 3000:3000
+    working_dir: /app
+    command: yarn preview
+    healthcheck:
+      test: ["CMD", "lsof", "-t", "-i:3000"]
+      timeout: 10s
+      retries: 5
