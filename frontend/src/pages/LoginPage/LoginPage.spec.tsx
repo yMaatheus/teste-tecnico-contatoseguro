@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import LoginPage from "./LoginPage";
 
 describe("Test Login Page", () => {
-  it("the title is visible", async () => {
+  it("Exibe o texto sobre o canal denúncias", async () => {
     render(<LoginPage />);
     const result1 = await screen.findByText("Canal de Denúncias:");
     expect(result1).toBeInTheDocument();
