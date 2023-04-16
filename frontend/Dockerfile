@@ -1,8 +1,9 @@
 FROM node:18-alpine
 
-WORKDIR /app
+WORKDIR /app-frontend
 
-COPY package.json .
+COPY package* ./
+COPY yarn.lock ./
 
 RUN yarn install
 
@@ -10,4 +11,4 @@ COPY . .
 
 RUN yarn build
 
-CMD [ "yarn", "start" ]
+CMD [ "yarn", "preview" ]

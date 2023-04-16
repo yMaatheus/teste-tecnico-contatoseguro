@@ -1,0 +1,12 @@
+{
+  "name": "teste-tecnico-contatoseguro",
+  "version": "1.0.0",
+  "author": "¨Matheus¨ <ymatheus.h@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "compose": "docker-compose up -d",
+    "compose:down": "docker-compose down",
+    "compose:dev": "docker-compose -f docker-compose.dev.yml up -d",
+    "compose:dev:down": "docker-compose -f docker-compose.dev.yml down"
+  }
+}
