@@ -1,5 +1,7 @@
 import { Navigate, useOutlet } from "react-router-dom";
 import { useAuth } from "../context/AuthProvider";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 type ProtectedLayoutType = {
   children?: React.ReactNode;
@@ -12,5 +14,11 @@ export const ProtectedLayout = ({ children }: ProtectedLayoutType) => {
     return <Navigate to="/" replace />;
   }
 
-  return <>{children ? children : outlet}</>;
+  return (
+    <div className="w-full h-screen">
+      <Navbar />
+      {children ? children : outlet}
+      <Footer />
+    </div>
+  );
 };
