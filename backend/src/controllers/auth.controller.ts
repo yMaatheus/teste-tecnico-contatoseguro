@@ -5,11 +5,11 @@ import jwt from 'jsonwebtoken';
 
 const JWT_SECRET = process.env.JWT_SECRET || 'secret';
 
-export default class UserController {
+export default class AuthController {
 
   constructor() {}
 
-  public async me(_req: Request, res: Response) {
+  public async status(_req: Request, res: Response) {
     return res.status(StatusCodes.OK).json({ message: 'You are authenticated', token: res.locals.token });
   }
 
