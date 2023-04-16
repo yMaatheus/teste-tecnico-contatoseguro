@@ -1,9 +1,10 @@
-import { Routes } from "./routes";
+import { Router } from "./routes";
+import { AuthProvider } from "./context/AuthProvider";
 
 const App = () => (
-  <>
-    <Routes />
-  </>
+  <AuthProvider>
+    <Router />
+  </AuthProvider>
 );
 
 export default App;
