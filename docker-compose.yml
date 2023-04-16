@@ -10,6 +10,8 @@ services:
     depends_on:
       backend:
         condition: service_healthy
+    environment:
+      - VITE_BACKEND_URL=http://localhost:3001
     healthcheck:
       test: ["CMD", "lsof", "-t", "-i:3000"]
       timeout: 10s
@@ -46,7 +48,7 @@ services:
     restart: 'always'
     healthcheck:
       test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
-      timeout: 15s
-      retries: 5
+      timeout: 20s
+      retries: 10
     cap_add:
       - SYS_NICE # Omitir alertas menores
