@@ -1,11 +1,10 @@
 import axios from "axios";
 
-const { VITE_BACKEND_URL } = import.meta.env;
-
-axios.defaults.withCredentials = true;
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:3001";
 
 const api = axios.create({
-  baseURL: VITE_BACKEND_URL,
+  baseURL: BACKEND_URL,
+  withCredentials: true,
 });
 
 export default api;
