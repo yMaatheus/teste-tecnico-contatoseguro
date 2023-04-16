@@ -2,6 +2,8 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { ptShort } from "yup-locale-pt";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../../../context/AuthProvider";
 
 yup.setLocale(ptShort);
 
@@ -14,6 +16,7 @@ const schema = yup
 type FormData = yup.InferType<typeof schema>;
 
 const LoginForm = () => {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -21,7 +24,12 @@ const LoginForm = () => {
   } = useForm<FormData>({
     resolver: yupResolver(schema),
   });
-  const onSubmit = (data: FormData) => console.log(data);
+  const { signIn } = useAuth();
+
+  const onSubmit = async (data: FormData) => {
+    await signIn(data.email, data.password);
+    navigate("/usuarios", { replace: true });
+  };
 
   return (
     <form
