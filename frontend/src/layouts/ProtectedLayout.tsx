@@ -15,9 +15,9 @@ export const ProtectedLayout = ({ children }: ProtectedLayoutType) => {
   }
 
   return (
-    <div className="w-full h-screen">
+    <div className="flex flex-col w-full h-screen">
       <Navbar />
-      {children ? children : outlet}
+      <main className="flex-1">{children ? children : outlet}</main>
       <Footer />
     </div>
   );
