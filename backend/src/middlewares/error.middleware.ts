@@ -1,8 +1,17 @@
 import { ErrorRequestHandler } from 'express';
-import { StatusCodes } from 'http-status-codes';
 import { ErrorTypes, errorCatalog } from '../errors/catalog';
+import { ZodError } from 'zod';
+import { StatusCodes } from 'http-status-codes';
 
-const errorHandler: ErrorRequestHandler = (err: Error, _r, res, _n) => {
+const errorHandler: ErrorRequestHandler = (
+  err: Error | ZodError,
+  _req,
+  res,
+  _next,
+) => {
+  if (err instanceof ZodError) {
+    return res.status(400).json({ error: err.issues });
+  }
   // aqui vamos fazer o cast da mensagem de erro para uma chave do Enum ErrorTypes
   // com o keyof typeof - traduzindo seria algo como 'chaves do tipo de'
   // dizemos que o `err.message` é alguma das chaves do ErrorTypes
@@ -17,6 +26,7 @@ const errorHandler: ErrorRequestHandler = (err: Error, _r, res, _n) => {
     const { httpStatus, error } = mappedError;
     return res.status(httpStatus).json({ error });
   }
+  console.error(err);
   return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ error: 'internal error' });
 };
 
