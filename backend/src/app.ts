@@ -1,8 +1,7 @@
 import cookieParser from 'cookie-parser';
-import express, { Request, Response } from 'express';
+import express from 'express';
 import cors from 'cors';
 import 'express-async-errors';
-import { StatusCodes } from 'http-status-codes';
 import { router } from './routes';
 import dotenv from 'dotenv';
 import errorHandler from './middlewares/error.middleware';
@@ -19,10 +18,6 @@ app.use(cors({
   credentials: true,
 }));
 app.use(cookieParser());
-
-app.get('/', (_req: Request, res: Response) => {
-  res.status(StatusCodes.OK).send('Express + TypeScript')
-});
 
 app.use(router);
 
