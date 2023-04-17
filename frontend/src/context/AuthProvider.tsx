@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { createContext } from "react";
-import { loginUser, logoutUser } from "../services/user";
+import { loginUser, logoutUser } from "../services/auth";
 import { clearUser, getUser, setUserLocal } from "../utils/localStorage.util";
 
 type AuthContextType = {
   user: string | null | undefined;
-  signout: () => void;
+  logout: () => Promise<void>;
   signIn: (email: string, password: string) => Promise<void>;
 };
 
@@ -21,13 +21,13 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     setUserLocal(data);
   };
 
-  const signout = async () => {
+  const logout = async () => {
     await logoutUser();
     setUser(null);
     clearUser();
   };
 
-  const value = { user, signout, signIn };
+  const value = { user, logout, signIn };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
