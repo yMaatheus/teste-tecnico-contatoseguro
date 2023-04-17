@@ -6,5 +6,3 @@ export const registerAuthMiddleware = (req: Request, _res: Response, next: NextF
   if (!parsed.success) throw parsed.error;
   return next();
 };
-
-export default registerAuthMiddleware;

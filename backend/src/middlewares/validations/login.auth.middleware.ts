@@ -10,5 +10,3 @@ export const loginAuthMiddleware = (req: Request, _res: Response, next: NextFunc
   if (!parsed.success) throw parsed.error;
   return next();
 };
-
-export default loginAuthMiddleware;
