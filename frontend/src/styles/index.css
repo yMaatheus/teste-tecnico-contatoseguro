@@ -11,6 +11,10 @@
     @apply bg-[url('/src/assets/images/background-blur-login.png'),url('/src/assets/images/background-login.png')] bg-no-repeat;
   }
 
+  .footer-bg {
+    background-color: #d9dade;
+  }
+
   .error-message {
     @apply text-red-500 text-sm italic;
   }
