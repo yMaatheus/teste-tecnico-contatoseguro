@@ -1,7 +1,7 @@
 import * as dotenv from 'dotenv';
 import { verify, sign, SignOptions, JwtPayload } from 'jsonwebtoken';
 import { ErrorTypes } from '../errors/catalog';
-import { IUserJWT } from '../interfaces/IUser';
+import { IAuthUserJWT } from '../interfaces/IAuthUser';
 
 dotenv.config();
 
@@ -11,7 +11,7 @@ const options: SignOptions = { expiresIn: '15d', algorithm: 'HS256' };
 class JwtProvider {
   constructor(private secret: string, private signOptions: SignOptions) {}
 
-  signUser(user: IUserJWT): string {
+  signUser(user: IAuthUserJWT): string {
     return this.sign({ user });
   }
 
@@ -28,4 +28,6 @@ class JwtProvider {
   }
 }
 
-export default new JwtProvider(SECRET, options);
+const jwtProvider = new JwtProvider(SECRET, options);
+
+export default jwtProvider;

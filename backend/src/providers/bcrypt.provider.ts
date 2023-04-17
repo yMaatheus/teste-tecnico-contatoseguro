@@ -3,7 +3,7 @@ import { ErrorTypes } from '../errors/catalog';
 
 const SALT_ROUNDS = 10;
 
-class bcryptProvider {
+class BcryptProvider {
   constructor(private saltRounds: number) { }
 
   async hashPassword(password: string): Promise<string> {
@@ -19,4 +19,6 @@ class bcryptProvider {
   }
 }
 
-export default new bcryptProvider(SALT_ROUNDS);
+const bcryptProvider = new BcryptProvider(SALT_ROUNDS);
+
+export default bcryptProvider;
