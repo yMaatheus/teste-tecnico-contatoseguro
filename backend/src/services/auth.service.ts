@@ -25,7 +25,7 @@ export interface IAuthService {
   login({ email, password }: ILoginAuthUser): Promise<IToken>
 }
 
-class AuthService implements IAuthService {
+export default class AuthService implements IAuthService {
 
   async register({ name, email, password }: IRegisterAuthUser) {
     const passwordHash = await bcryptProvider.hashPassword(password);
@@ -48,5 +48,3 @@ class AuthService implements IAuthService {
     return { token, user };
   }
 }
-
-export default AuthService;
