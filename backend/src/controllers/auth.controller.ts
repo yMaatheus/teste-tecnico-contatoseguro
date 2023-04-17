@@ -1,23 +1,32 @@
 import { Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
-
-import jwt from 'jsonwebtoken';
-
-const JWT_SECRET = process.env.JWT_SECRET || 'secret';
+import AuthService from '../services/auth.service';
 
 export default class AuthController {
 
-  constructor() {}
-
-  public async status(_req: Request, res: Response) {
-    return res.status(StatusCodes.OK).json({ message: 'You are authenticated', token: res.locals.token });
+  constructor(private service: AuthService) {
+    this.register = this.register.bind(this);
+    this.login = this.login.bind(this);
   }
 
-  public async login(_req: Request, res: Response) {
-    const token = jwt.sign({ id: '10' }, JWT_SECRET);
+  public async status(_req: Request, res: Response) {
+    return res.status(StatusCodes.OK).json({ message: 'You are authenticated', user: res.locals.user });
+  }
+
+  public async register(req: Request, res: Response) {
+    const { token, user } = await this.service.register(req.body);
+
     res.cookie('token', token, { httpOnly: true, sameSite: 'strict' });
   
-    return res.status(StatusCodes.OK).json({ message: 'Login successful'});
+    return res.status(StatusCodes.CREATED).json({ user, message: 'Register successful'});
+  }
+
+  public async login(req: Request, res: Response) {
+    const { token, user } = await this.service.login(req.body);
+
+    res.cookie('token', token, { httpOnly: true, sameSite: 'strict' });
+  
+    return res.status(StatusCodes.OK).json({ user, message: 'Login successful'});
   }
 
   public async logout(_req: Request, res: Response) {

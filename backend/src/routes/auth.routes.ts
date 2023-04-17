@@ -1,10 +1,14 @@
 import { Router } from 'express';
 import authMiddleware from '../middlewares/auth.middleware';
 import AuthController from '../controllers/auth.controller';
+import AuthService from '../services/auth.service';
 
-const authController = new AuthController();
+const authService = new AuthService();
+const authController = new AuthController(authService);
 
 const router = Router();
+
+router.post('/register', authController.register);
 
 router.post('/login', authController.login);
 
