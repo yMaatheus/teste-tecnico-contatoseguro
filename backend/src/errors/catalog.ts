@@ -22,19 +22,19 @@ export enum ErrorTypes {
 export const errorCatalog: ErrorCatalog = {
   InvalidCredentials: {
     error: 'Invalid credentials',
-    httpStatus: 401,
+    httpStatus: StatusCodes.UNAUTHORIZED,
   },
   TokenNotFound: {
     error: 'Token not found',
-    httpStatus: 401,
+    httpStatus: StatusCodes.UNAUTHORIZED,
   },
   AllFieldsMustBeFilled: {
     error: 'All fields must be filled',
-    httpStatus: 400,
+    httpStatus: StatusCodes.BAD_REQUEST,
   },
   InvalidId: {
     error: 'Id invalid',
-    httpStatus: 400,
+    httpStatus: StatusCodes.BAD_REQUEST,
   },
   WrongPassword: {
     error: 'Wrong password',
@@ -42,7 +42,7 @@ export const errorCatalog: ErrorCatalog = {
   },
   UserNotFound: {
     error: 'User not found',
-    httpStatus: StatusCodes.UNAUTHORIZED,
+    httpStatus: StatusCodes.NOT_FOUND,
   },
   ExpiredOrInvalidToken: {
     error: 'Expired or invalid token',
