@@ -5,6 +5,7 @@ import 'express-async-errors';
 import { StatusCodes } from 'http-status-codes';
 import { router } from './routes';
 import dotenv from 'dotenv';
+import errorHandler from './middlewares/error.middleware';
 
 dotenv.config();
 
@@ -24,5 +25,7 @@ app.get('/', (_req: Request, res: Response) => {
 });
 
 app.use(router);
+
+app.use(errorHandler);
 
 export default app;
