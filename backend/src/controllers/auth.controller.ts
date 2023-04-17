@@ -5,8 +5,10 @@ import AuthService from '../services/auth.service';
 export default class AuthController {
 
   constructor(private service: AuthService) {
+    this.status = this.status.bind(this);
     this.register = this.register.bind(this);
     this.login = this.login.bind(this);
+    this.logout = this.logout.bind(this);
   }
 
   public async status(_req: Request, res: Response) {
