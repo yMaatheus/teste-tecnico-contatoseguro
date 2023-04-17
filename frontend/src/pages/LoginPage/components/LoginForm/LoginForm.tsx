@@ -4,6 +4,8 @@ import * as yup from "yup";
 import { ptShort } from "yup-locale-pt";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../../../context/AuthProvider";
+import { useState } from "react";
+import { AxiosError } from "axios";
 
 yup.setLocale(ptShort);
 
@@ -25,10 +27,20 @@ const LoginForm = () => {
     resolver: yupResolver(schema),
   });
   const { signIn } = useAuth();
+  const [responseError, setResponseError] = useState<string | null>(null);
 
   const onSubmit = async (data: FormData) => {
-    await signIn(data.email, data.password);
-    navigate("/usuarios", { replace: true });
+    try {
+      await signIn(data.email, data.password);
+      navigate("/usuarios", { replace: true });
+    } catch (error) {
+      const { response } = error as AxiosError;
+      if (response?.status === 401) {
+        setResponseError("Email ou senha incorretos");
+      } else {
+        setResponseError("Erro ao fazer login");
+      }
+    }
   };
 
   return (
@@ -48,12 +60,14 @@ const LoginForm = () => {
 
       <label htmlFor="password">Senha</label>
       <input
-        type="text"
+        type="password"
         id="password"
         className="w-full"
         {...register("password")}
       />
-      <p className="error-message">{errors.password?.message}</p>
+      <p className="error-message">
+        {errors.password?.message || responseError}
+      </p>
 
       <span className="text-gray-500 text-sm self-end">
         Esqueceu sua senha?
