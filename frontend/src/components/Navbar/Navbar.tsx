@@ -1,17 +1,20 @@
-import logo from "../../assets/images/logo.png";
+import { Logo } from "../Logo";
+import { Logout } from "../Logout";
 
 const Navbar = () => (
-  <nav className="w-[40%] h-20 flex justify-between mr-auto ml-auto">
-    <div>
-      <img className="h-full" src={logo} alt="Logo Contato seguro" />
-    </div>
-    <div className="">
-      <ul className="w-full h-full flex items-center flex-row gap-2">
-        <li>Usuários</li>
-        <li>Empresas</li>
-        <li>Relatorios</li>
-        <li>Logout</li>
-      </ul>
+  <nav className="flex justify-center w-full h-[92px] py-2 px-4 shadow-md">
+    <div className="flex justify-between items-center w-[40%]">
+      <Logo className="h-12" />
+      <div>
+        <ul className="flex items-center flex-row gap-8">
+          <li>
+            <a href="">Usuários</a>
+          </li>
+          <li>Empresas</li>
+          <li>Relatorios</li>
+          <Logout />
+        </ul>
+      </div>
     </div>
   </nav>
 );
