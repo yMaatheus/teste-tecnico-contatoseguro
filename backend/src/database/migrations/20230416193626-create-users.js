@@ -23,7 +23,7 @@ module.exports = {
         allowNull: true, 
       },
       dateOfBirth: {
-        type: Sequelize.STRING,
+        type: Sequelize.DATEONLY,
         allowNull: true,
         field: 'date_of_birth',
       },
