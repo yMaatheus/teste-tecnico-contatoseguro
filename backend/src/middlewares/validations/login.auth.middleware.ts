@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import { z } from 'zod';
 
-const loginAuthMiddleware = (req: Request, _res: Response, next: NextFunction) => {
+export const loginAuthMiddleware = (req: Request, _res: Response, next: NextFunction) => {
   const schema = z.object({
     email: z.string().email(),
     password: z.string().min(6)

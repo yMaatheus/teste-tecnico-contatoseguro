@@ -3,7 +3,7 @@ import { ErrorTypes, errorCatalog } from '../errors/catalog';
 import { ZodError } from 'zod';
 import { StatusCodes } from 'http-status-codes';
 
-const errorHandler: ErrorRequestHandler = (
+export const errorHandler: ErrorRequestHandler = (
   err: Error | ZodError,
   _req,
   res,

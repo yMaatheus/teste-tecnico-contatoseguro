@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 import jwt, { JwtPayload } from 'jsonwebtoken';
 import { ErrorTypes } from '../errors/catalog';
 
-export default (req: Request, res: Response, next: NextFunction) => {
+export const authMiddleware = (req: Request, res: Response, next: NextFunction) => {
   const { token } = req.cookies;
   if (!token) throw Error(ErrorTypes.TokenNotFound);
   try {
@@ -13,4 +13,4 @@ export default (req: Request, res: Response, next: NextFunction) => {
   }
 
   return next();
-}
+} 
