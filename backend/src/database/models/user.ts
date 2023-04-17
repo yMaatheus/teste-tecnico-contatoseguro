@@ -8,6 +8,9 @@ export default class User extends Model {
   public phone!: string;
   public dateOfBirth!: Date;
   public cityOfBirth!: string;
+
+  public readonly createdAt!: Date;
+  public readonly updatedAt!: Date;
 }
 
 User.init({
@@ -40,6 +43,6 @@ User.init({
 }, {
   underscored: true,
   sequelize: db,
-  modelName: 'Users',
+  modelName: 'users',
   tableName: 'users',
 });

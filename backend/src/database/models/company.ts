@@ -8,6 +8,9 @@ export default class Company extends Model {
   public address!: string;
   public city!: string;
   public state!: string;
+
+  public readonly createdAt!: Date;
+  public readonly updatedAt!: Date;
 }
 
 Company.init({
@@ -40,6 +43,6 @@ Company.init({
 }, {
   underscored: true,
   sequelize: db,
-  modelName: 'Companies',
+  modelName: 'companies',
   tableName: 'companies',
 });
