@@ -29,7 +29,7 @@ module.exports = {
         field: 'company_id',
       },
       description: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT,
         allowNull: false, 
       },
       createdAt: {
