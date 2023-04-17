@@ -1,14 +1,15 @@
 import { NextFunction, Request, Response } from 'express';
-import jwt from 'jsonwebtoken';
+import jwt, { JwtPayload } from 'jsonwebtoken';
+import { ErrorTypes } from '../errors/catalog';
 
 export default (req: Request, res: Response, next: NextFunction) => {
   const { token } = req.cookies;
-  if (!token) return res.status(403).json({ error: 'Token not found' });
+  if (!token) throw Error(ErrorTypes.TokenNotFound);
   try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET || "");
-    res.locals.token = decoded;
+    const { user } = jwt.verify(token, process.env.JWT_SECRET || "") as JwtPayload;
+    res.locals.user = user;
   } catch (error) {
-    return res.status(401).json({ error: 'Expired or invalid token' });
+    throw Error(ErrorTypes.ExpiredOrInvalidToken);
   }
 
   return next();
