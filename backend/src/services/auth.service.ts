@@ -25,7 +25,7 @@ export interface IAuthService {
   login({ email, password }: ILoginAuthUser): Promise<IToken>
 }
 
-export default class AuthService implements IAuthService {
+export class AuthService implements IAuthService {
 
   async register({ name, email, password }: IRegisterAuthUser) {
     const passwordHash = await bcryptProvider.hashPassword(password);

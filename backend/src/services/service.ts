@@ -2,7 +2,7 @@ import { Model, ModelStatic } from "sequelize";
 import { ErrorTypes } from "../errors/catalog";
 import { IService } from "../interfaces/IService";
 
-export default class Service<T extends Model<T>> implements IService<T> {
+export class Service<T extends Model<T>> implements IService<T> {
 
   constructor(public _model: ModelStatic<any>) { }
 

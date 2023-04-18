@@ -1,8 +1,8 @@
 import Company from "../database/models/company";
 import User from "../database/models/user";
-import Service from "./service";
+import { Service } from "./service";
 
-export default class CompanyService extends Service<Company> {
+export class CompanyService extends Service<Company> {
   async getAll(): Promise<Company[]> {
     const companies = await Company.findAll({
       include: [{

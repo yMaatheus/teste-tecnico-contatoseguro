@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import * as sinon from 'sinon';
 import { Request, Response } from 'express';
 import { faker } from '@faker-js/faker';
-import AuthService from '../../services/auth.service';
+import { AuthService } from '../../services';
 import { AuthController } from '../../controllers';
 import jwtProvider from '../../providers/jwt.provider';
 import { IAuthUserJWT } from '../../interfaces/IAuthUserJWT';
@@ -59,7 +59,7 @@ describe('Auth Controller', () => {
 
   describe('register', () => {
     it('successfully', async () => {
-      req.body = {...login};
+      req.body = { ...login };
       await controller.register(req, res);
 
       expect((res.cookie as sinon.SinonStub).calledWith('token', token, { httpOnly: true, sameSite: 'strict' })).to.be.true;
@@ -70,7 +70,7 @@ describe('Auth Controller', () => {
 
   describe('login', () => {
     it('successfully', async () => {
-      req.body = {...login};
+      req.body = { ...login };
       await controller.login(req, res);
 
       expect((res.cookie as sinon.SinonStub).calledWith('token', token, { httpOnly: true, sameSite: 'strict' })).to.be.true;
