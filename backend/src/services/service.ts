@@ -22,8 +22,11 @@ export default class Service<T extends Model<T>> implements IService<T> {
   }
 
   async updateById(id: number, update: Partial<T>) {
-    const result = await this._model.update(update, { where: { id } });
+    const result = await this._model.update(update, {
+      where: { id }
+    });
     if (!result) throw Error(ErrorTypes.EntityNotFound);
+    return await this.getById(id);
   }
 
   async deleteById(id: number) {

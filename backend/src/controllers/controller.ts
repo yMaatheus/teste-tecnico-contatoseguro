@@ -30,8 +30,8 @@ export default class Controller<T> {
 
   public async updateById(req: Request, res: Response) {
     const { id } = req.params;
-    await this.service.updateById(+id, req.body);
-    return res.status(StatusCodes.OK).end();
+    const result = await this.service.updateById(+id, req.body);
+    return res.status(StatusCodes.OK).json(result);
   }
 
   public async deleteById(req: Request, res: Response) {

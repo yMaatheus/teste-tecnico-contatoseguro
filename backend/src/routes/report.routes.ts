@@ -14,6 +14,7 @@ router.route('/')
   .get(reportController.getAll)
 
 router.route('/:id')
+  .get(reportController.getById)
   .put(reportController.updateById)
   .delete(reportController.deleteById);
 

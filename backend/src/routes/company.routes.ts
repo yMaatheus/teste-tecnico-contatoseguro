@@ -14,6 +14,7 @@ router.route('/')
   .get(companyController.getAll)
 
 router.route('/:id')
+  .get(companyController.getById)
   .put(companyController.updateById)
   .delete(companyController.deleteById);
 
