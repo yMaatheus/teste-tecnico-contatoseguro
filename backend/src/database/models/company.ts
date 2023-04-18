@@ -1,5 +1,7 @@
 import { STRING, INTEGER, Model } from 'sequelize';
 import db from '.';
+import UserCompany from './userCompany';
+import User from './user';
 
 export default class Company extends Model {
   public id!: number;
