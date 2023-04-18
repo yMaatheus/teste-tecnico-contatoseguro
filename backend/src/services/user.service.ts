@@ -1,40 +1,14 @@
+import Company from "../database/models/company";
 import User from "../database/models/user";
-import UserCompany from "../database/models/userCompany";
-import { ErrorTypes } from "../errors/catalog";
-import { IUser } from "../interfaces/IUser";
+import Service from "./service";
 
-export interface IAuthService {
-  getAll(): Promise<UserCompany[]>
-}
-
-export default class UserService implements IAuthService {
-
-  async create({ name, email, phone, dateOfBirth, cityOfBirth }: IUser) {
-    const result = await User.create({ name, email, phone, dateOfBirth, cityOfBirth });
-
-    const user = result.get();
-
-    return { user };
-  }
-
+export default class UserService extends Service<User> {
   async getAll() {
-    const users = await UserCompany.findAll();
-    // const users = await UserCompany.findAll({ include: [{ model: User, as: 'users' }, { model: Company, as: 'companies' }] });
+    const users = await User.findAll({
+      include: [{
+        model: Company, as: 'companies', through: { attributes: [] }
+      }]
+    });
     return users;
-  }
-
-  async getById(id: number) {
-    const user = await User.findByPk(id);
-    return user;
-  }
-
-  async updateById(id: number, update: IUser) {
-    const result = await User.update(update, { where: { id } });
-    if (!result) throw Error(ErrorTypes.UserNotFound);
-  }
-
-  async deleteById(id: number) {
-    const result = await User.destroy({ where: { id } });
-    if (!result) throw Error(ErrorTypes.UserNotFound);
   }
 }
