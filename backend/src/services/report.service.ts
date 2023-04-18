@@ -1,12 +1,16 @@
+import Company from "../database/models/company";
 import Report from "../database/models/report";
+import User from "../database/models/user";
+import Service from "./service";
 
-export interface IReportService {
-  getAll(): Promise<Report[]>
-}
-
-export default class ReportService implements IReportService {
+export default class ReportService extends Service<Report> {
   async getAll(): Promise<Report[]> {
-    const companies = await Report.findAll();
-    return companies;
+    const reports = await Report.findAll({
+      include: [
+        { model: User, as: 'user' },
+        { model: Company, as: 'company' },
+      ]
+    });
+    return reports;
   }
 }
