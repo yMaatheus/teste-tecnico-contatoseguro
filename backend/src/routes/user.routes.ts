@@ -1,7 +1,7 @@
 import { Router } from 'express';
-import UserService from '../services/user.service';
+import { UserService } from '../services/user.service';
 import { createUserMiddleware } from '../middlewares';
-import Controller from '../controllers/controller';
+import { Controller } from '../controllers/controller';
 import User from '../database/models/user';
 
 const userService = new UserService(User);

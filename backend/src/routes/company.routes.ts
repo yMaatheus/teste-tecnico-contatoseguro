@@ -1,7 +1,7 @@
 import { Router } from 'express';
-import CompanyService from '../services/company.service';
+import { CompanyService } from '../services/company.service';
 import { createCompanyMiddleware } from '../middlewares';
-import Controller from '../controllers/controller';
+import { Controller } from '../controllers/controller';
 import Company from '../database/models/company';
 
 const companyService = new CompanyService(Company);

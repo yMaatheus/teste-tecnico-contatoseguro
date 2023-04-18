@@ -1,8 +1,8 @@
 import { Router } from 'express';
 import { createReportMiddleware } from '../middlewares';
 import Report from '../database/models/report';
-import ReportService from '../services/report.service';
-import Controller from '../controllers/controller';
+import { ReportService } from '../services/report.service';
+import { Controller } from '../controllers/controller';
 
 const reportService = new ReportService(Report);
 const reportController = new Controller(reportService);
