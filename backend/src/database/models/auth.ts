@@ -1,5 +1,12 @@
-import { STRING, INTEGER, Model } from 'sequelize';
+import { DataTypes, Model } from 'sequelize';
 import db from '.';
+import { z } from 'zod';
+
+export const AuthUserZodSchema = z.object({
+  name: z.string().min(3),
+  email: z.string().email(),
+  password: z.string().min(6),
+});
 
 export default class Auth extends Model {
   public id!: number;
@@ -10,21 +17,21 @@ export default class Auth extends Model {
 
 Auth.init({
   id: {
-    type: INTEGER,
+    type: DataTypes.INTEGER,
     allowNull: false,
     primaryKey: true,
     autoIncrement: true,
   },
   name: {
-    type: STRING,
+    type: DataTypes.STRING,
     allowNull: false,
   },
   email: {
-    type: STRING,
+    type: DataTypes.STRING,
     allowNull: false,
   },
   password: {
-    type: STRING,
+    type: DataTypes.STRING,
     allowNull: false,
   },
 }, {

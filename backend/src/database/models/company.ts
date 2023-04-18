@@ -1,7 +1,14 @@
-import { STRING, INTEGER, Model } from 'sequelize';
+import { DataTypes, Model } from 'sequelize';
 import db from '.';
-import UserCompany from './userCompany';
-import User from './user';
+import { z } from 'zod';
+
+export const CompanyZodSchema = z.object({
+  name: z.string().min(6),
+  cnpj: z.string().min(14),
+  address: z.string().min(6),
+  city: z.string().min(6),
+  state: z.string().min(2),
+});
 
 export default class Company extends Model {
   public id!: number;
@@ -17,29 +24,29 @@ export default class Company extends Model {
 
 Company.init({
   id: {
-    type: INTEGER,
+    type: DataTypes.INTEGER,
     allowNull: false,
     primaryKey: true,
     autoIncrement: true,
   },
   name: {
-    type: STRING,
+    type: DataTypes.STRING,
     allowNull: false,
   },
   cnpj: {
-    type: STRING,
+    type: DataTypes.STRING,
     allowNull: false,
   },
   address: {
-    type: STRING,
+    type: DataTypes.STRING,
     allowNull: false,
   },
   city: {
-    type: STRING,
+    type: DataTypes.STRING,
     allowNull: false,
   },
   state: {
-    type: STRING,
+    type: DataTypes.STRING,
     allowNull: false,
   },
 }, {
