@@ -1,6 +1,6 @@
 import Auth from "../database/models/auth";
 import { ErrorTypes } from "../errors/catalog";
-import { IAuthUserJWT } from "../interfaces/IAuthUser";
+import { IAuthUserJWT } from "../interfaces/IAuthUserJWT";
 import bcryptProvider from "../providers/bcrypt.provider";
 import jwtProvider from "../providers/jwt.provider";
 

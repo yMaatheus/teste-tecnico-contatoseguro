@@ -14,7 +14,7 @@ export default class UserController {
 
   public async create(req: Request, res: Response) {
     const user = await this.service.create(req.body);
-    return res.status(StatusCodes.CREATED).json({ user });
+    return res.status(StatusCodes.CREATED).json(user);
   }
 
   public async getAll(_req: Request, res: Response) {

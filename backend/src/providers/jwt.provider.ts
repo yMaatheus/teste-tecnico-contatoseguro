@@ -1,7 +1,7 @@
 import * as dotenv from 'dotenv';
 import { verify, sign, SignOptions, JwtPayload } from 'jsonwebtoken';
 import { ErrorTypes } from '../errors/catalog';
-import { IAuthUserJWT } from '../interfaces/IAuthUser';
+import { IAuthUserJWT } from '../interfaces/IAuthUserJWT';
 
 dotenv.config();
 
