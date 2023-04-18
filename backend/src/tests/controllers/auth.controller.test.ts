@@ -24,9 +24,7 @@ describe('Auth Controller', () => {
     id: faker.datatype.number(),
     name: faker.name.firstName(),
     email: faker.internet.email(),
-    phone: faker.phone.number('(##) #####-####'),
-    dateOfBirth: faker.date.past(),
-    cityOfBirth: faker.address.city(),
+    password: faker.internet.password()
   }
 
   const token = jwtProvider.signUser(user);
