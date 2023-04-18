@@ -1,9 +1,7 @@
-import { Model, DataTypes, STRING, INTEGER, DATEONLY } from 'sequelize';
+import { Model, DataTypes } from 'sequelize';
 import db from '.';
-import User from './user';
-import Company from './company';
 
-class UserCompany extends Model {
+export default class UserCompany extends Model {
   public userId!: number;
   public companyId!: number;
 }
@@ -32,6 +30,3 @@ UserCompany.init({
   modelName: 'UserCompany',
   tableName: 'users_companies',
 });
-
-User.belongsToMany(Company, { through: UserCompany });
-Company.belongsToMany(User, { through: UserCompany });
