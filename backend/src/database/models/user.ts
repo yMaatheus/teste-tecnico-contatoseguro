@@ -1,5 +1,7 @@
 import { STRING, INTEGER, DATEONLY, Model } from 'sequelize';
 import db from '.';
+import Company from './company';
+import UserCompany from './userCompany';
 
 export default class User extends Model {
   public id!: number;
@@ -30,19 +32,30 @@ User.init({
   },
   phone: {
     type: STRING,
-    allowNull: false,
+    allowNull: true,
   },
   dateOfBirth: {
     type: DATEONLY,
-    allowNull: false,
+    allowNull: true,
   },
   cityOfBirth: {
     type: STRING,
-    allowNull: false,
+    allowNull: true,
   },
 }, {
   underscored: true,
   sequelize: db,
   modelName: 'users',
   tableName: 'users',
+});
+
+User.belongsToMany(Company, {
+  through: UserCompany,
+  foreignKey: 'company_id',
+  otherKey: 'user_id',
+});
+Company.belongsToMany(User, {
+  through: UserCompany,
+  foreignKey: 'user_id',
+  otherKey: 'company_id',
 });
