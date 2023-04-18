@@ -18,15 +18,21 @@ export class Service<T extends Model<T>> implements IService<T> {
 
   async getById(id: number) {
     const result = await this._model.findByPk(id);
-    return result;
+
+    if (!result) throw Error(ErrorTypes.EntityNotFound);
+
+    return result.get();
   }
 
   async updateById(id: number, update: Partial<T>) {
-    const result = await this._model.update(update, {
+    const [result] = await this._model.update(update, {
       where: { id }
     });
+
     if (!result) throw Error(ErrorTypes.EntityNotFound);
-    return await this.getById(id);
+
+    const entity = await this.getById(id);
+    return entity;
   }
 
   async deleteById(id: number) {
