@@ -38,7 +38,7 @@ export class AuthService implements IAuthService {
 
   async login({ email, password }: ILoginAuthUser) {
     const authUser = await Auth.findOne({ where: { email } });
-    if (!authUser) throw Error(ErrorTypes.UserNotFound);
+    if (!authUser) throw Error(ErrorTypes.EmailNotFound);
 
     const { password: passwordHash, ...user } = authUser.get();
 
