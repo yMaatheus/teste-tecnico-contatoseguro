@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import { CompanyZodSchema } from '../../interfaces/ICompany';
+import { CompanyZodSchema } from '../../database/models/company';
 
 export const createCompanyMiddleware = (req: Request, _res: Response, next: NextFunction) => {
   const parsed = CompanyZodSchema.safeParse(req.body);

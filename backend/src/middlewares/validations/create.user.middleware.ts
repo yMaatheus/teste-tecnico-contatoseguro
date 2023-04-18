@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import { UserZodSchema } from '../../interfaces/IUser';
+import { UserZodSchema } from '../../database/models/user';
 
 export const createUserMiddleware = (req: Request, _res: Response, next: NextFunction) => {
   const parsed = UserZodSchema.safeParse(req.body);

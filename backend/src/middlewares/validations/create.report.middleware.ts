@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import { ReportZodSchema } from '../../interfaces/IReport';
+import { ReportZodSchema } from '../../database/models/report';
 
 export const createReportMiddleware = (req: Request, _res: Response, next: NextFunction) => {
   const parsed = ReportZodSchema.safeParse(req.body);
