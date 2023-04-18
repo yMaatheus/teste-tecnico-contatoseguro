@@ -17,6 +17,7 @@ export enum ErrorTypes {
   WrongPassword = 'WrongPassword',
   UserNotFound = 'UserNotFound',
   ExpiredOrInvalidToken = 'ExpiredOrInvalidToken',
+  EntityNotFound = 'EntityNotFound',
 }
 
 export const errorCatalog: ErrorCatalog = {
@@ -47,5 +48,9 @@ export const errorCatalog: ErrorCatalog = {
   ExpiredOrInvalidToken: {
     error: 'Expired or invalid token',
     httpStatus: StatusCodes.UNAUTHORIZED,
+  },
+  EntityNotFound: {
+    error: 'Entity not found',
+    httpStatus: StatusCodes.NOT_FOUND,
   }
 };
