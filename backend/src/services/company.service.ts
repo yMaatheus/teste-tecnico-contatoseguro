@@ -1,12 +1,14 @@
 import Company from "../database/models/company";
+import User from "../database/models/user";
+import Service from "./service";
 
-export interface ICompanyService {
-  getAll(): Promise<Company[]>
-}
-
-export default class CompanyService implements ICompanyService {
+export default class CompanyService extends Service<Company> {
   async getAll(): Promise<Company[]> {
-    const companies = await Company.findAll();
+    const companies = await Company.findAll({
+      include: [{
+        model: User, as: 'users', through: { attributes: [] }
+      }]
+    });
     return companies;
   }
 }

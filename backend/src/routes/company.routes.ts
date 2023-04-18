@@ -1,10 +1,11 @@
 import { Router } from 'express';
-import CompanyController from '../controllers/company.controller';
 import CompanyService from '../services/company.service';
 import { createCompanyMiddleware } from '../middlewares';
+import Controller from '../controllers/controller';
+import Company from '../database/models/company';
 
-const companyService = new CompanyService();
-const companyController = new CompanyController(companyService);
+const companyService = new CompanyService(Company);
+const companyController = new Controller(companyService);
 
 const router = Router();
 
