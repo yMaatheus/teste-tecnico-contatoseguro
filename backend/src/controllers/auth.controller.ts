@@ -19,16 +19,16 @@ export default class AuthController {
     const { token, user } = await this.service.register(req.body);
 
     res.cookie('token', token, { httpOnly: true, sameSite: 'strict' });
-  
-    return res.status(StatusCodes.CREATED).json({ user, message: 'Register successful'});
+
+    return res.status(StatusCodes.CREATED).json({ user, message: 'Register successful' });
   }
 
   public async login(req: Request, res: Response) {
     const { token, user } = await this.service.login(req.body);
 
     res.cookie('token', token, { httpOnly: true, sameSite: 'strict' });
-  
-    return res.status(StatusCodes.OK).json({ user, message: 'Login successful'});
+
+    return res.status(StatusCodes.OK).json({ user, message: 'Login successful' });
   }
 
   public async logout(_req: Request, res: Response) {

@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { authMiddleware, registerAuthMiddleware, loginAuthMiddleware } from '../middlewares'; 
+import { authMiddleware, registerAuthMiddleware, loginAuthMiddleware } from '../middlewares';
 import AuthController from '../controllers/auth.controller';
 import AuthService from '../services/auth.service';
 
