@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
 import { IService } from '../interfaces/IService';
 
-export default class Controller<T> {
+export class Controller<T> {
 
   constructor(private service: IService<T>) {
     this.create = this.create.bind(this);

@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
 import AuthService from '../services/auth.service';
 
-export default class AuthController {
+export class AuthController {
 
   constructor(private service: AuthService) {
     this.status = this.status.bind(this);
