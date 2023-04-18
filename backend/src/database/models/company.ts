@@ -1,6 +1,7 @@
 import { DataTypes, Model } from 'sequelize';
 import db from '.';
 import { z } from 'zod';
+import Report from './report';
 
 export const CompanyZodSchema = z.object({
   name: z.string().min(6),
@@ -55,3 +56,6 @@ Company.init({
   modelName: 'companies',
   tableName: 'companies',
 });
+
+Company.hasMany(Report, { foreignKey: 'companyId', as: 'company' });
+Report.belongsTo(Company, { foreignKey: 'companyId', as: 'company' });

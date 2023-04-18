@@ -1,8 +1,6 @@
 import { DataTypes, Model } from 'sequelize';
 import db from '.';
 import { z } from 'zod';
-import User from './user';
-import Company from './company';
 
 export const ReportZodSchema = z.object({
   userId: z.number().positive(),
@@ -17,15 +15,21 @@ export default class Report extends Model {
 }
 
 Report.init({
-  userId: {
+  id: {
     type: DataTypes.INTEGER,
     allowNull: false,
     primaryKey: true,
     autoIncrement: true,
   },
+  userId: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    field: 'user_id',
+  },
   companyId: {
     type: DataTypes.INTEGER,
     allowNull: false,
+    field: 'company_id',
   },
   description: {
     type: DataTypes.STRING,
@@ -37,6 +41,3 @@ Report.init({
   modelName: 'Reports',
   tableName: 'reports',
 });
-
-Report.hasMany(User, { foreignKey: 'user_id' });
-Report.hasMany(Company, { foreignKey: 'company_id' });

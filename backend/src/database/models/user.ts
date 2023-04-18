@@ -3,6 +3,7 @@ import db from '.';
 import Company from './company';
 import UserCompany from './userCompany';
 import { z } from 'zod';
+import Report from './report';
 
 export const UserZodSchema = z.object({
   name: z.string().min(3),
@@ -58,13 +59,8 @@ User.init({
   tableName: 'users',
 });
 
-User.belongsToMany(Company, {
-  through: UserCompany,
-  foreignKey: 'company_id',
-  otherKey: 'user_id',
-});
-Company.belongsToMany(User, {
-  through: UserCompany,
-  foreignKey: 'user_id',
-  otherKey: 'company_id',
-});
+User.belongsToMany(Company, { through: UserCompany });
+Company.belongsToMany(User, { through: UserCompany });
+
+User.hasMany(Report, { foreignKey: 'userId', as: 'user' });
+Report.belongsTo(User, { foreignKey: 'userId', as: 'user' });

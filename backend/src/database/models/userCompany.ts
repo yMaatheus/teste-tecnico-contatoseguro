@@ -14,6 +14,7 @@ UserCompany.init({
       model: 'users',
       key: 'id',
     },
+    field: 'user_id',
   },
   companyId: {
     type: DataTypes.INTEGER.UNSIGNED,
@@ -22,6 +23,7 @@ UserCompany.init({
       model: 'companies',
       key: 'id',
     },
+    field: 'company_id',
   },
 }, {
   underscored: true,
