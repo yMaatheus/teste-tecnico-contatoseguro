@@ -1,9 +1,14 @@
 import { Router } from "./routes";
 import { AuthProvider } from "./context/AuthProvider";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+export const queryClient = new QueryClient();
 
 const App = () => (
   <AuthProvider>
-    <Router />
+    <QueryClientProvider client={queryClient}>
+      <Router />
+    </QueryClientProvider>
   </AuthProvider>
 );
 
