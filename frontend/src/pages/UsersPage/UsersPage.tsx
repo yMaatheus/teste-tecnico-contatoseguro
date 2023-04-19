@@ -1,6 +1,6 @@
 import { Form } from "../../components/Form";
 import { useQuery } from "@tanstack/react-query";
-import { getUsers } from "../../services/user/getAllUsers.user.service";
+import { getUsers } from "../../services/user";
 import { UserTable } from "./UserTable/UserTable";
 import useUserStore from "../../lib/user.store";
 
