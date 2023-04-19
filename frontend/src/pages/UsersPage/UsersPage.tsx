@@ -1,25 +1,45 @@
-import { useEffect, useState } from "react";
 import { Form } from "../../components/Form";
-import api from "../../lib/axios";
-import { UserType } from "../../types";
+import { useQuery } from "@tanstack/react-query";
+import { getUsers } from "../../services/user/getAllUsers.user.service";
+import { UserTable } from "./UserTable/UserTable";
+import useUserStore from "../../lib/user.store";
 
 export const UsersPage = () => {
-  const [users, setUsers] = useState<UserType[]>([]);
+  const { data, refetch, isLoading } = useQuery({
+    queryKey: ["user"],
+    queryFn: getUsers,
+  });
 
-  useEffect(() => {
-    const getUsers = async () => {
-      const { data } = await api.get("/user");
-      setUsers(data);
-    };
+  const [search, searchLabel] = useUserStore((state) => [
+    state.search,
+    state.searchLabel,
+  ]);
 
-    getUsers();
-  }, []);
-
-  console.log(users);
+  const users = data
+    ?.filter((user) =>
+      searchLabel === "Nome"
+        ? user.name.toLowerCase().includes(search.toLowerCase())
+        : true
+    )
+    .filter((user) =>
+      searchLabel === "Email"
+        ? user.email.toLowerCase().includes(search.toLowerCase())
+        : true
+    )
+    .filter((user) =>
+      searchLabel === "Telefone"
+        ? user.phone?.toLowerCase().includes(search.toLowerCase())
+        : true
+    );
 
   return (
     <div className="w-full h-full flex justify-center items-center">
-      <Form />
+      <Form
+        columns={["Nome", "Email", "Telefone"]}
+        table={
+          !isLoading && <UserTable users={users || []} refetch={refetch} />
+        }
+      />
     </div>
   );
 };
