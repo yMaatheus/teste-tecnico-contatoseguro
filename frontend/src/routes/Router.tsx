@@ -1,7 +1,7 @@
 import { Route, BrowserRouter, Routes, Navigate } from "react-router-dom";
-import ErrorPage from "../pages/ErrorPage";
+import { ErrorPage } from "../pages/ErrorPage";
 import { ProtectedLayout } from "../layouts/ProtectedLayout";
-import LoginPage from "../pages/LoginPage";
+import { LoginPage } from "../pages/LoginPage";
 import { UsersPage } from "../pages/UsersPage";
 import { useAuth } from "../context/AuthProvider";
 
