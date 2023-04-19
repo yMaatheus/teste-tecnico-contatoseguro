@@ -1,15 +1,14 @@
 import React from "react";
 import { Logo } from "../Logo";
-import { BiPlus } from "react-icons/bi";
 import useUserStore from "../../lib/user.store";
-import { Button } from "react-daisyui";
 
 type FormType = {
   columns: string[];
+  insertButton?: React.ReactNode;
   table?: React.ReactNode;
 };
 
-export const Form = ({ columns, table }: FormType) => {
+export const Form = ({ columns, insertButton, table }: FormType) => {
   const [search, setSearch, searchLabel, setSearchLabel] = useUserStore(
     (state) => [
       state.search,
@@ -23,9 +22,7 @@ export const Form = ({ columns, table }: FormType) => {
       <Logo className="h-24" classWrapper="flex justify-center" />
 
       <div className="header-wrapper flex gap-10 justify-between">
-        <Button className="btn">
-          <BiPlus color="white" size="32" />
-        </Button>
+        <div>{insertButton}</div>
         <div className="flex gap-9">
           <input
             type="text"
