@@ -7,5 +7,14 @@ export const ThemeToogle = () => {
     );
   };
 
-  return <input type="checkbox" className="toggle" onClick={toggleTheme} />;
+  return (
+    <input
+      type="checkbox"
+      className="toggle"
+      onClick={toggleTheme}
+      defaultChecked={
+        document.documentElement.getAttribute("data-theme") === "dark"
+      }
+    />
+  );
 };
