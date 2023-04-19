@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import LoginHeader from "./LoginHeader";
+import { LoginHeader } from "./LoginHeader";
 
 describe("Test Login Header", () => {
   it("Exibe a logo", async () => {

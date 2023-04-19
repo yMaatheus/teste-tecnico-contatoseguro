@@ -1,7 +1,7 @@
-import LoginForm from "./components/LoginForm";
-import LoginHeader from "./components/LoginHeader";
+import { LoginForm } from "./components/LoginForm";
+import { LoginHeader } from "./components/LoginHeader";
 
-const LoginPage = () => (
+export const LoginPage = () => (
   <div className="h-full w-screen login-bg">
     <div className="ml-auto mr-auto pt-10 grid h-screen w-8/12 grid-rows-[10%_60%] gap-10 ">
       <LoginHeader />
@@ -21,5 +21,3 @@ const LoginPage = () => (
     </div>
   </div>
 );
-
-export default LoginPage;

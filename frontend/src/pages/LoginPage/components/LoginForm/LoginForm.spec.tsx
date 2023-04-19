@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import LoginForm from "./LoginForm";
+import { LoginForm } from "./LoginForm";
 
 describe("Test Login Header", () => {
   it("Exibe as informações, labels e inputs", async () => {

@@ -1,3 +1,1 @@
-import LoginHeader from "./LoginHeader";
-
-export default LoginHeader;
+export { LoginHeader } from "./LoginHeader";

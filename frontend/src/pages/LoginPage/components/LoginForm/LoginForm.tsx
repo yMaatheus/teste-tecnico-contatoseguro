@@ -17,7 +17,7 @@ const schema = yup
   .required();
 type FormData = yup.InferType<typeof schema>;
 
-const LoginForm = () => {
+export const LoginForm = () => {
   const navigate = useNavigate();
   const {
     register,
@@ -79,5 +79,3 @@ const LoginForm = () => {
     </form>
   );
 };
-
-export default LoginForm;
