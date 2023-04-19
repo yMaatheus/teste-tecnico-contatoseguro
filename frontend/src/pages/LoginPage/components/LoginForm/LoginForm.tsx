@@ -55,14 +55,21 @@ export const LoginForm = () => {
       </span>
 
       <label htmlFor="email">E-mail</label>
-      <input type="text" id="email" className="w-full" {...register("email")} />
+      <input
+        type="text"
+        id="email"
+        placeholder="Insira seu e-mail"
+        className="w-full input input-bordered"
+        {...register("email")}
+      />
       <p className="error-message">{errors.email?.message}</p>
 
       <label htmlFor="password">Senha</label>
       <input
         type="password"
         id="password"
-        className="w-full"
+        placeholder="Insira sua senha"
+        className="w-full input input-bordered"
         {...register("password")}
       />
       <p className="error-message">

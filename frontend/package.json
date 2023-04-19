@@ -32,7 +32,6 @@
   },
   "devDependencies": {
     "@hookform/resolvers": "^3.0.1",
-    "@tailwindcss/forms": "^0.5.3",
     "@testing-library/dom": "^9.2.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.0.0",
