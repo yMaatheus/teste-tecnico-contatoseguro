@@ -11,7 +11,7 @@ export const UserZodSchema = z.object({
   phone: z.string().optional(),
   dateOfBirth: z.coerce.date().optional(),
   cityOfBirth: z.string().min(3).optional(),
-});
+}).strict();
 
 export default class User extends Model {
   public id!: number;

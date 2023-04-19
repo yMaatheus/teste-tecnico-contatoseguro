@@ -1,5 +1,5 @@
 export { loginAuthMiddleware } from './login.auth.middleware'
 export { registerAuthMiddleware } from './register.auth.middleware'
-export { createUserMiddleware } from './create.user.middleware'
-export { createCompanyMiddleware } from './create.company.middleware'
-export { createReportMiddleware } from './create.report.middleware'
+export { userValidationMiddleware } from './user.middleware'
+export { companyValidationMiddleware } from './company.middleware'
+export { reportValidationMiddleware } from './report.middleware'

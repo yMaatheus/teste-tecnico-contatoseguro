@@ -6,7 +6,7 @@ export const ReportZodSchema = z.object({
   userId: z.number().positive(),
   companyId: z.number().positive(),
   description: z.string().min(6),
-});
+}).strict();
 
 export default class Report extends Model {
   public userId!: number;

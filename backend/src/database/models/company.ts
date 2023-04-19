@@ -9,7 +9,7 @@ export const CompanyZodSchema = z.object({
   address: z.string().min(6),
   city: z.string().min(6),
   state: z.string().min(2),
-});
+}).strict();
 
 export default class Company extends Model {
   public id!: number;
