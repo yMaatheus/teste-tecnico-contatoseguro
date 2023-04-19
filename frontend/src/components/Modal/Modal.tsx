@@ -4,13 +4,15 @@ export const Modal = ({
   children,
   buttonLabel,
   htmlFor,
+  labelClass = "",
 }: {
   children: React.ReactNode;
-  buttonLabel: string;
+  buttonLabel: string | React.ReactNode;
   htmlFor: string;
+  labelClass?: string;
 }) => (
   <>
-    <label htmlFor={htmlFor} className="btn btn-ghost btn-xs">
+    <label htmlFor={htmlFor} className={`btn btn-gho btn-xs ${labelClass}`}>
       {buttonLabel}
     </label>
 
