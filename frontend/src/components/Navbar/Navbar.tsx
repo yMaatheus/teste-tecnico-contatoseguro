@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { Logo } from "../Logo";
 import { Logout } from "../Logout";
+import { ThemeToogle } from "../ThemeToogle";
 
 const Navbar = () => (
   <nav className="flex justify-center w-full h-[92px] py-2 px-4 shadow-md">
@@ -18,6 +19,9 @@ const Navbar = () => (
             <NavLink to="/relatorios">Relatórios</NavLink>
           </li>
           <Logout />
+          <li>
+            <ThemeToogle />
+          </li>
         </ul>
       </div>
     </div>
