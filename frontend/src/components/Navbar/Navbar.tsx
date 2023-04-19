@@ -18,7 +18,10 @@ const Navbar = () => (
           <li>
             <NavLink to="/relatorios">Relatórios</NavLink>
           </li>
-          <Logout />
+          <li>
+            <Logout />
+          </li>
+
           <li>
             <ThemeToogle />
           </li>

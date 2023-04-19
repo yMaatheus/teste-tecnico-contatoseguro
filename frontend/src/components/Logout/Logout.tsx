@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthProvider";
+import { Button } from "react-daisyui";
 
 export const Logout = () => {
   const navigate = useNavigate();
@@ -9,9 +10,5 @@ export const Logout = () => {
     await logout();
     navigate("/", { replace: true });
   };
-  return (
-    <li onClick={handleLogout}>
-      <a>Logout</a>
-    </li>
-  );
+  return <Button onClick={handleLogout}>Logout</Button>;
 };
