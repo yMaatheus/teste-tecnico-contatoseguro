@@ -1,6 +1,6 @@
 import React from "react";
 import { Logo } from "../Logo";
-import useUserStore from "../../lib/user.store";
+import useAppStore from "../../lib/store";
 
 type FormType = {
   columns: string[];
@@ -9,7 +9,7 @@ type FormType = {
 };
 
 export const Form = ({ columns, insertButton, table }: FormType) => {
-  const [search, setSearch, searchLabel, setSearchLabel] = useUserStore(
+  const [search, setSearch, searchLabel, setSearchLabel] = useAppStore(
     (state) => [
       state.search,
       state.setSearch,

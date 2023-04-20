@@ -1,17 +1,17 @@
 import { create } from "zustand";
 
-interface UserStoreType {
+interface StoreType {
   search: string;
   searchLabel: string;
   setSearch: (search: string) => void;
   setSearchLabel: (searchLabel: string) => void;
 }
 
-const useUserStore = create<UserStoreType>()((set) => ({
+const useAppStore = create<StoreType>()((set) => ({
   search: "",
   searchLabel: "Nome",
   setSearch: (search: string) => set(() => ({ search })),
   setSearchLabel: (searchLabel: string) => set(() => ({ searchLabel })),
 }));
 
-export default useUserStore;
+export default useAppStore;
