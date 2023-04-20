@@ -19,11 +19,11 @@ const schema = yup
   .required();
 type FormData = yup.InferType<typeof schema>;
 
-interface UserCreateModalProps {
+interface CreateModalProps {
   refetch: () => Promise<QueryObserverResult<CompanyType[], unknown>>;
 }
 
-export const CompanyCreateModal = ({ refetch }: UserCreateModalProps) => {
+export const CompanyCreateModal = ({ refetch }: CreateModalProps) => {
   const {
     register,
     handleSubmit,
@@ -36,14 +36,14 @@ export const CompanyCreateModal = ({ refetch }: UserCreateModalProps) => {
   const submit = async (data: FormData) => {
     await createCompany(data);
     reset();
-    closeModal(`modal-user-insert`);
+    closeModal(`modal-company-insert`);
     refetch();
   };
 
   return (
     <Modal
       buttonLabel={<BiPlus color="white" size="32" className="w-full h-full" />}
-      htmlFor={`modal-user-insert`}
+      htmlFor={`modal-company-insert`}
       labelClass="btn w-full h-full"
     >
       <form className="flex flex-col gap-6" onSubmit={handleSubmit(submit)}>
