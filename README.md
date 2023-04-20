@@ -70,10 +70,23 @@ _Responda aqui quais foram suas dificuldades e explique a sua solução_
 
 ## DecisionMake
 
-  Ao ler sobre o projeto resolvi
+  Ao decidir quais tecnologias utilizar no meu projeto, levei em consideração o contexto de associações, segurança, integridade dos dados. Para o banco de dados, escolhi o MySQL devido à sua grande maturidade no mercado e capacidade de manter a integridade dos dados. Além disso, decidi utilizar o Sequelize como ORM, devido à sua popularidade no mercado, segurança e suporte da comunidade.
+
+No Backend, optei pela arquitetura MSC (Model, Service, Controller), implementei um sistema de login com http-only cookie. Esse sistema oferece maior segurança à aplicação, já que o controle de autenticação fica por conta do backend, sem que o JavaScript do frontend tenha acesso ao token de autenticação. Fiz uso da biblioteca Zod para validações, bcrypt para criptografia de senhas no banco de dados e jwt para validação de token. Também implementei testes unitários com mocha, chai e sinon.
+
+Para a estilização no frontend, decidi utilizar as bibliotecas TailwindCSS e DaisyUI, por serem performáticas, fáceis de utilizar e já possuírem responsividade incorporada. Além disso, essas bibliotecas permitem uma grande liberdade de personalização. Para manipulação de formulários utilizei react-hook-form integrado com o Yup. Zustand como biblioteca de estado global devido ao tamanho do projeto.
+
 
 ## Dificuldades:
-- 
+- Integração do sequelize com Typescript
+- Componentizar o Frontend
+- Integrar algumas bibliotecas com os testes
+
+## O que faria diferente?
+
+- Focaria em fazer os requisitos obrigatórios, após isso, faria os bônus
+- Usaria um framework no backend
+- Mudaria para um ORM no qual tivesse melhor compatibilidade com Typescript
 
 ## Instalando as dependencias
 
