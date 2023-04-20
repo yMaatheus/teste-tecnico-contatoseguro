@@ -6,6 +6,7 @@ import * as yup from "yup";
 import { updateUser } from "../../../services/user";
 import { QueryObserverResult } from "@tanstack/react-query";
 import { ViewToDate, dateToView } from "../../../utils/date.util";
+import { closeModal } from "../../../utils/modal.util";
 
 const schema = yup
   .object({
@@ -57,12 +58,7 @@ export const UserEditModal = ({
       ...data,
       dateOfBirth: ViewToDate(data.dateOfBirth || ""),
     } as UserType);
-    const checkbox = document.querySelector(
-      `#modal-user-edit-${id}`
-    ) as HTMLInputElement;
-    if (checkbox) {
-      checkbox.checked = false;
-    }
+    closeModal(`modal-user-edit-${id}`);
     refetch();
   };
 
