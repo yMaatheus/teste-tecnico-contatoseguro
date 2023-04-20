@@ -10,7 +10,7 @@ export const CompanyDetailModal = ({
   state,
   users,
 }: CompanyType) => (
-  <Modal buttonLabel="Detalhes" htmlFor={`modal-user-details-${id}`}>
+  <Modal buttonLabel="Detalhes" htmlFor={`modal-company-details-${id}`}>
     <div className="flex justify-evenly">
       <div className="flex flex-col">
         <span>Nome: {name}</span>

@@ -2,6 +2,7 @@ import { Button } from "react-daisyui";
 import { GenericTable } from "../../../components/GenericTable";
 import { QueryObserverResult } from "@tanstack/react-query";
 import { ReportType } from "../../../types/ReportType";
+import { ReportDetailModal } from "../ReportDetailModal";
 
 export const ReportTable = ({
   reports = [],
@@ -31,8 +32,12 @@ export const ReportTable = ({
           <td>{report.user?.name}</td>
           <td>{report.company?.name}</td>
           <td></td>
-          <td>Detalhes</td>
-          <td>Editar</td>
+          <td>
+            <ReportDetailModal {...report} />
+          </td>
+          <td>
+            <ReportDetailModal {...report} />
+          </td>
           <td>
             <Button className="btn btn-ghost btn-xs">Remover</Button>
           </td>
