@@ -68,7 +68,7 @@ Aqui na Contato Seguro, utilizamos __Docker__ nos nossos ambientes, então será
 # Resposta do participante
 _Responda aqui quais foram suas dificuldades e explique a sua solução_
 
-## DecisionMake
+## 📱 DecisionMake
 
   Ao decidir quais tecnologias utilizar no meu projeto, levei em consideração o contexto de associações, segurança, integridade dos dados. Para o banco de dados, escolhi o MySQL devido à sua grande maturidade no mercado e capacidade de manter a integridade dos dados. Além disso, decidi utilizar o Sequelize como ORM, devido à sua popularidade no mercado, segurança e suporte da comunidade.
 
@@ -88,7 +88,15 @@ Para a estilização no frontend, decidi utilizar as bibliotecas TailwindCSS e D
 - Usaria um framework no backend
 - Mudaria para um ORM no qual tivesse melhor compatibilidade com Typescript
 
-## Instalando as dependencias
+### 📋 Pré-requisitos
+
+Para conseguir rodar o projeto você pode precisar dos seguintes itens:
+
+- [Node](https://nodejs.org/en/)
+- [Yarn](https://classic.yarnpkg.com/en/docs/getting-started)
+- [docker](https://www.docker.com/)
+
+## 🔧 Instalando as dependencias
 
 Acesse a pasta `backend` e execute
 
@@ -121,13 +129,13 @@ Se não existir crie um arquivo `.env` com a URL do `backend`, exemplo:
 VITE_BACKEND_URL=http://localhost:3001
 ```
 
-## Rodando a aplicação
+## 🚀 Rodando a aplicação
 
 - Certifique-se que as portas `3000`, `3001` e `3002` estão livres. 
 - Rode o comando na pasta inicial do projeto:
 
-```bash
-$ yarn compose:dev
+```
+yarn compose:dev
 ```
 
 Esse comando criará os containers do Banco de dados, Backend e Frontend.
@@ -151,7 +159,7 @@ Email: admin@gmail.com
 Senha: secret_admin
 ```
 
-## Bibliotecas e Ferramentas
+## 🛠️ Bibliotecas e Ferramentas
 
 ### Frontend
 - Vite
