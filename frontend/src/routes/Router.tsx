@@ -4,7 +4,7 @@ import { ProtectedLayout } from "../layouts/ProtectedLayout";
 import { LoginPage } from "../pages/LoginPage";
 import { UsersPage } from "../pages/UsersPage";
 import { useAuth } from "../context/AuthProvider";
-import { CompaniesPage } from "../pages/CompaniesPage";
+import { CompaniesPage } from "../pages/CompanyPage";
 import { ReportsPage } from "../pages/ReportsPage";
 
 export const Router = () => {

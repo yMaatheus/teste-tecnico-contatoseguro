@@ -30,14 +30,16 @@ export const UsersPage = () => {
       return true;
     });
 
+  const table = !isLoading && (
+    <UserTable users={users || []} refetch={refetch} />
+  );
+
   return (
     <div className="w-full h-full flex justify-center items-center">
       <Form
         columns={["Nome", "Email", "Telefone", "Cidade"]}
         insertButton={<UserCreateModal refetch={refetch} />}
-        table={
-          !isLoading && <UserTable users={users || []} refetch={refetch} />
-        }
+        table={table}
       />
     </div>
   );
