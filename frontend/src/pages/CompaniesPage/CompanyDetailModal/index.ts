@@ -1,0 +1,1 @@
+export { CompanyDetailModal } from "./CompanyDetailModal";
