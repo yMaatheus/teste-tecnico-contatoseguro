@@ -10,22 +10,17 @@ import { closeModal } from "../../../utils/modal.util";
 
 const schema = yup
   .object({
-    name: yup.string().required(),
+    name: yup.string().min(3).required(),
     email: yup.string().email().required(),
     phone: yup.string().nullable(),
     dateOfBirth: yup.string().nullable(),
-    cityOfBirth: yup.string().nullable(),
+    cityOfBirth: yup.string().min(3).nullable(),
   })
   .required();
+
 type FormData = yup.InferType<typeof schema>;
 
-interface UserEditModalProps {
-  id: number;
-  name: string;
-  email: string;
-  phone?: string;
-  dateOfBirth?: string;
-  cityOfBirth?: string;
+interface EditModalProps extends UserType {
   refetch: () => Promise<QueryObserverResult<UserType[], unknown>>;
 }
 
@@ -37,7 +32,7 @@ export const UserEditModal = ({
   dateOfBirth,
   cityOfBirth,
   refetch,
-}: UserEditModalProps) => {
+}: EditModalProps) => {
   const {
     register,
     handleSubmit,
@@ -56,7 +51,7 @@ export const UserEditModal = ({
   const submit = async (data: FormData) => {
     await updateUser(id, {
       ...data,
-      dateOfBirth: ViewToDate(data.dateOfBirth || ""),
+      dateOfBirth: ViewToDate(data.dateOfBirth),
     } as UserType);
     closeModal(`modal-user-edit-${id}`);
     refetch();

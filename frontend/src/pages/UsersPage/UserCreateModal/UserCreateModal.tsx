@@ -7,26 +7,23 @@ import { createUser } from "../../../services/user";
 import { ViewToDate } from "../../../utils/date.util";
 import { UserType } from "../../../types";
 import { closeModal } from "../../../utils/modal.util";
-import { QueryObserverResult, useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { getCompanies } from "../../../services/company";
+import { CreateModalProps } from "../../../types/CreateModalProps";
 
 const schema = yup
   .object({
-    name: yup.string().required(),
+    name: yup.string().min(3).required(),
     email: yup.string().email().required(),
     phone: yup.string().nullable(),
     dateOfBirth: yup.string().nullable(),
-    cityOfBirth: yup.string().nullable(),
-    companies: yup.array().of(yup.string()),
+    cityOfBirth: yup.string().min(3).nullable(),
+    companies: yup.array().of(yup.string()).nullable(),
   })
   .required();
 type FormData = yup.InferType<typeof schema>;
 
-interface UserCreateModalProps {
-  refetch: () => Promise<QueryObserverResult<UserType[], unknown>>;
-}
-
-export const UserCreateModal = ({ refetch }: UserCreateModalProps) => {
+export const UserCreateModal = ({ refetch }: CreateModalProps<UserType>) => {
   const {
     register,
     handleSubmit,
@@ -44,7 +41,7 @@ export const UserCreateModal = ({ refetch }: UserCreateModalProps) => {
   const submit = async (data: FormData) => {
     await createUser({
       ...data,
-      dateOfBirth: ViewToDate(data.dateOfBirth || ""),
+      dateOfBirth: ViewToDate(data.dateOfBirth),
     } as UserType);
     reset();
     closeModal(`modal-user-insert`);

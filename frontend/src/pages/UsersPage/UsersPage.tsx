@@ -2,8 +2,8 @@ import { Form } from "../../components/Form";
 import { useQuery } from "@tanstack/react-query";
 import { getUsers } from "../../services/user";
 import { UserTable } from "./UserTable/UserTable";
-import useStore from "../../lib/store";
 import { UserCreateModal } from "./UserCreateModal";
+import useAppStore from "../../lib/store";
 
 export const UsersPage = () => {
   const { data, refetch, isLoading } = useQuery({
@@ -11,10 +11,14 @@ export const UsersPage = () => {
     queryFn: getUsers,
   });
 
-  const [search, searchLabel] = useStore((state) => [
-    state.search,
-    state.searchLabel,
-  ]);
+  const [search, searchLabel, setSearch, setSearchLabel] = useAppStore(
+    (state) => [
+      state.search,
+      state.searchLabel,
+      state.setSearch,
+      state.setSearchLabel,
+    ]
+  );
 
   const users = data //TODO - Refactor this
     ?.filter((user) => {
@@ -40,6 +44,10 @@ export const UsersPage = () => {
         columns={["Nome", "Email", "Telefone", "Cidade"]}
         insertButton={<UserCreateModal refetch={refetch} />}
         table={table}
+        search={search}
+        searchLabel={searchLabel}
+        setSearch={setSearch}
+        setSearchLabel={setSearchLabel}
       />
     </div>
   );
