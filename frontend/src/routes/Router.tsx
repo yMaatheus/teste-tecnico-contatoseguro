@@ -4,6 +4,8 @@ import { ProtectedLayout } from "../layouts/ProtectedLayout";
 import { LoginPage } from "../pages/LoginPage";
 import { UsersPage } from "../pages/UsersPage";
 import { useAuth } from "../context/AuthProvider";
+import { CompaniesPage } from "../pages/CompaniesPage";
+import { ReportsPage } from "../pages/ReportsPage";
 
 export const Router = () => {
   const { user } = useAuth();
@@ -17,8 +19,8 @@ export const Router = () => {
 
         <Route element={<ProtectedLayout />}>
           <Route path="usuarios" element={<UsersPage />} />
-          <Route path="empresas" element={<h1>Empresas</h1>} />
-          <Route path="relatorios" element={<h1>Relatorio</h1>} />
+          <Route path="empresas" element={<CompaniesPage />} />
+          <Route path="relatorios" element={<ReportsPage />} />
         </Route>
 
         <Route path="*" element={<ErrorPage />} />
