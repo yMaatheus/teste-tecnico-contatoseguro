@@ -16,10 +16,9 @@ export const ReportTable = ({
       data={reports}
       columns={
         <tr>
-          <th>Nome</th>
-          <th>Endereço</th>
-          <th>Cidade</th>
-          <th>Estado</th>
+          <th>Identificador</th>
+          <th>Usuário</th>
+          <th>Empresa</th>
           <th></th>
           <th></th>
           <th></th>
@@ -31,7 +30,6 @@ export const ReportTable = ({
           <td>{report.id}</td>
           <td>{report.user?.name}</td>
           <td>{report.company?.name}</td>
-          <td>{report.description}</td>
           <td></td>
           <td>Detalhes</td>
           <td>Editar</td>
