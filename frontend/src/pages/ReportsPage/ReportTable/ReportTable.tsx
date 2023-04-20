@@ -3,6 +3,7 @@ import { GenericTable } from "../../../components/GenericTable";
 import { QueryObserverResult } from "@tanstack/react-query";
 import { ReportType } from "../../../types/ReportType";
 import { ReportDetailModal } from "../ReportDetailModal";
+import { ReportEditModal } from "../ReportEditModal";
 
 export const ReportTable = ({
   reports = [],
@@ -36,7 +37,7 @@ export const ReportTable = ({
             <ReportDetailModal {...report} />
           </td>
           <td>
-            <ReportDetailModal {...report} />
+            <ReportEditModal {...report} refetch={refetch} />
           </td>
           <td>
             <Button className="btn btn-ghost btn-xs">Remover</Button>
