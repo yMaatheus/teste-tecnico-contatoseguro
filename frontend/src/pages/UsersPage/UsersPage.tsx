@@ -2,7 +2,7 @@ import { Form } from "../../components/Form";
 import { useQuery } from "@tanstack/react-query";
 import { getUsers } from "../../services/user";
 import { UserTable } from "./UserTable/UserTable";
-import useUserStore from "../../lib/user.store";
+import useStore from "../../lib/store";
 import { UserCreateModal } from "./UserCreateModal";
 
 export const UsersPage = () => {
@@ -11,7 +11,7 @@ export const UsersPage = () => {
     queryFn: getUsers,
   });
 
-  const [search, searchLabel] = useUserStore((state) => [
+  const [search, searchLabel] = useStore((state) => [
     state.search,
     state.searchLabel,
   ]);
