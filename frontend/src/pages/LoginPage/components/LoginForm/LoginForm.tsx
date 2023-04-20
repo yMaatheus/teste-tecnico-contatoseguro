@@ -23,6 +23,7 @@ export const LoginForm = () => {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<FormData>({
     resolver: yupResolver(schema),
   });
@@ -41,6 +42,7 @@ export const LoginForm = () => {
         setResponseError("Erro ao fazer login");
       }
     }
+    reset();
   };
 
   return (

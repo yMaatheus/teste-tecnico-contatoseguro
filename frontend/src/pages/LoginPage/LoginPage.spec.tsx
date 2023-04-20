@@ -1,6 +1,7 @@
-import { screen } from "@testing-library/react";
+import { fireEvent, screen } from "@testing-library/react";
 import { LoginPage } from "./LoginPage";
 import { renderWithRouter } from "../../utils/renderWithRouter";
+import userEvent from "@testing-library/user-event";
 
 describe("Test Login Page", () => {
   it("Exibe o texto sobre o canal denúncias", async () => {
