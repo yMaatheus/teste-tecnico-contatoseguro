@@ -73,12 +73,45 @@ _Responda aqui quais foram suas dificuldades e explique a sua solução_
   Ao ler sobre o projeto resolvi
 
 ## Dificuldades:
+- 
 
+## Instalando as dependencias
 
+Acesse a pasta `backend` e execute
+
+```
+yarn install
+```
+
+Se não existe, crie um arquivo `.env` com as informações:
+
+```
+DB_USER=root
+DB_PASS=password
+DB_NAME=db
+DB_HOST=localhost
+DB_PORT=3002
+
+JWT_SECRET=secret
+FRONTEND_URL=http://localhost:3000
+```
+
+Agora, acesse a pagina do `frontend` e instale as dependencias:
+
+```
+yarn install
+```
+
+Se não existir crie um arquivo `.env` com a URL do `backend`, exemplo:
+
+```
+VITE_BACKEND_URL=http://localhost:3001
+```
 
 ## Rodando a aplicação
 
-Certifique-se que as portas `3000`, `3001` e `3002` estão livres. Na pasta onde está esse README da aplicação rode o comando:
+- Certifique-se que as portas `3000`, `3001` e `3002` estão livres. 
+- Rode o comando na pasta inicial do projeto:
 
 ```bash
 $ npm run compose
@@ -88,16 +121,60 @@ Esse comando criará os containers do Banco de dados, Backend e Frontend.
 
 Aguarde o healthcheck acontecer, após isso as aplicações estarão online
 
-### Para efetuar o login informe o usuário e senha:
+### Criando a database e populando o banco de dados:
 
+Acesse a pasta `backend` e popule o banco de dados:
+
+```
+npm run db:reset
+```
+
+### Para efetuar o login informe o email e senha na pagina de login:
+
+- Para acessar o Frontend entre na URL: `http://localhost:3000/`
+- Para acessar o Backend entre na URL: `http://localhost:3001/`
 ```
 Email: admin@gmail.com
 Senha: secret_admin
 ```
 
-> ## Bibliotecas e Ferramentas
+## Bibliotecas e Ferramentas
 
+### Frontend
+- Vite
 - React
+- Typescript
+- react-query
+- axios
+- tailwindcss
+- daisyui
+- react-router
+- react-hook-form
+- yup
+- zustand
+- react-icons
+- eslint
+- react-testing-library
+- vitest
+
+### Backend
+- express
+- typescript
+- sequelize
+- zod
+- express-async-errors
+- cookie-parser
+- bcryptjs
+- cors
+- dotenv
+- http-status-codes
+- jsonwebtoken
+- mocha
+- chai
+- sinon
+- nyc
+- eslint
+- faker-js
 
 ## Melhorias
 
@@ -138,14 +215,174 @@ Senha: secret_admin
 | `email`      | `string` | **Obrigatório**. Email para efetuar login |
 | `password`      | `string` | **Obrigatório**. Senha para efetuar login |
 
-#### Retorna um item
+#### Efetua o logout
 
 ```http
-  GET /api/items/${id}
+  POST /auth/logout
+```
+
+### User
+
+#### Cria um usuário
+
+```http
+  POST /user
 ```
 
 | Parâmetro   | Tipo       | Descrição                                   |
 | :---------- | :--------- | :------------------------------------------ |
-| `id`      | `string` | **Obrigatório**. O ID do item que você quer |
+| `name`      | `string` | **Obrigatório**. O Nome do usuário |
+| `email`      | `string` | **Obrigatório**. O Email do usuário |
+| `phone`      | `string` | O Telefone do usuário |
+| `dateOfBirth`      | `string` | Data de nascimneto do usuário |
+| `cityOfBirth`      | `string` | Cidade que o usuário nasceu |
+| `companies`      | `string` | Lista de empresas que o usuário tem releção |
 
+#### Lista todos os usuários
 
+```http
+  GET /user
+```
+
+#### Busca um usuário especifico
+
+```http
+  GET /user/${id}
+```
+
+| Parâmetro   | Tipo       | Descrição                                   |
+| :---------- | :--------- | :------------------------------------------ |
+| `id`      | `string` | **Obrigatório**. O ID do usuário |
+
+#### Atualiza os dados de um usuário
+
+```http
+  PUT /user/${id}
+```
+
+| Parâmetro   | Tipo       | Descrição                                   |
+| :---------- | :--------- | :------------------------------------------ |
+| `id`      | `string` | **Obrigatório**. O ID do usuário |
+| `name`      | `string` |  O novo nome do usuário |
+| `email`      | `string` | O novo email do usuário |
+| `phone`      | `string` | O novo telefone do usuário |
+| `dateOfBirth`      | `string` | Data de nascimneto do usuário |
+| `cityOfBirth`      | `string` | Cidade que o usuário nasceu |
+
+#### Deleta um usuário
+
+```http
+  DELETE /user/${id}
+```
+
+| Parâmetro   | Tipo       | Descrição                                   |
+| :---------- | :--------- | :------------------------------------------ |
+| `id`      | `string` | **Obrigatório**. O ID do usuário |
+
+### Company
+
+#### Cria uma empresa
+
+```http
+  POST /company
+```
+
+| Parâmetro   | Tipo       | Descrição                                   |
+| :---------- | :--------- | :------------------------------------------ |
+| `name`      | `string` | **Obrigatório**. Nome da empresa |
+| `cnpj`      | `string` | **Obrigatório**. CNPJ da empresa |
+| `address`      | `string` | **Obrigatório**. Endereço da empresa |
+| `city`      | `string` | **Obrigatório**. Cidade onde está a empresa |
+| `state`      | `string` | **Obrigatório**. Estado onde está a empresa |
+
+#### Lista todas as empresas
+
+```http
+  GET /company
+```
+
+#### Busca uma empresa especifica
+
+```http
+  GET /company/${id}
+```
+
+| Parâmetro   | Tipo       | Descrição                                   |
+| :---------- | :--------- | :------------------------------------------ |
+| `id`      | `string` | **Obrigatório**. O ID da empresa |
+
+#### Atualiza os dados de uma empresa
+
+```http
+  PUT /company/${id}
+```
+
+| Parâmetro   | Tipo       | Descrição                                   |
+| :---------- | :--------- | :------------------------------------------ |
+| `id`      | `string` | **Obrigatório**. O ID da empresa |
+| `name`      | `string` | Novo nome da empresa |
+| `cnpj`      | `string` | Novo CNPJ da empresa |
+| `address`      | `string` |  Novo endereço da empresa |
+| `city`      | `string` | Nova cidade onde está a empresa |
+| `state`      | `string` | Novo estado onde está a empresa |
+
+#### Deleta uma empresa
+
+```http
+  DELETE /company/${id}
+```
+
+| Parâmetro   | Tipo       | Descrição                                   |
+| :---------- | :--------- | :------------------------------------------ |
+| `id`      | `string` | **Obrigatório**. O ID da empresa |
+
+### Report
+
+#### Cria um relato
+
+```http
+  POST /report
+```
+
+| Parâmetro   | Tipo       | Descrição                                   |
+| :---------- | :--------- | :------------------------------------------ |
+| `userId`      | `number` | **Obrigatório**. Id do usuário |
+| `companyId`      | `number` | **Obrigatório**. Id da empresa |
+| `description`      | `string` | **Obrigatório**. Descrição do relato |
+
+#### Lista todos os relatos
+
+```http
+  GET /report
+```
+
+#### Busca um relato especifico
+
+```http
+  GET /report/${id}
+```
+
+| Parâmetro   | Tipo       | Descrição                                   |
+| :---------- | :--------- | :------------------------------------------ |
+| `id`      | `string` | **Obrigatório**. O ID do relato |
+
+#### Atualiza a descrição de um relato
+
+```http
+  PUT /report/${id}
+```
+
+| Parâmetro   | Tipo       | Descrição                                   |
+| :---------- | :--------- | :------------------------------------------ |
+| `id`      | `string` | **Obrigatório**. O ID do relato |
+| `description`      | `string` |  **Obrigatório**. A nova descrição do relato |
+
+#### Deleta um relato
+
+```http
+  DELETE /report/${id}
+```
+
+| Parâmetro   | Tipo       | Descrição                                   |
+| :---------- | :--------- | :------------------------------------------ |
+| `id`      | `string` | **Obrigatório**. O ID do relato |
