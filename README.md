@@ -127,7 +127,7 @@ VITE_BACKEND_URL=http://localhost:3001
 - Rode o comando na pasta inicial do projeto:
 
 ```bash
-$ npm run compose
+$ yarn compose:dev
 ```
 
 Esse comando criará os containers do Banco de dados, Backend e Frontend.
@@ -139,7 +139,7 @@ Aguarde o healthcheck acontecer, após isso as aplicações estarão online
 Acesse a pasta `backend` e popule o banco de dados:
 
 ```
-npm run db:reset
+yarn db:reset
 ```
 
 ### Para efetuar o login informe o email e senha na pagina de login:
