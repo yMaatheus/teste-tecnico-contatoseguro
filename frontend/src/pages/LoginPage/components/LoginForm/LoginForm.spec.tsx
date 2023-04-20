@@ -60,5 +60,7 @@ describe("Test Login Form", () => {
 
     expect(emailInput).toHaveValue(email);
     expect(passwordInput).toHaveValue(password);
+
+    loginButton.click();
   });
 });
