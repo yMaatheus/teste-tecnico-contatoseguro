@@ -1,11 +1,10 @@
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
+import { renderWithRouter } from "../../../../utils/renderWithRouter";
 import { LoginForm } from "./LoginForm";
 
-describe("Test Login Header", () => {
+describe("Test Login Form", () => {
   it("Exibe as informações, labels e inputs", async () => {
-    render(<LoginForm />);
-
-    screen.logTestingPlaygroundURL();
+    renderWithRouter(<LoginForm />);
 
     const welcome = screen.getByText(/e sejabem-vindo\(a\) à plataforma\./i);
     expect(welcome).toBeInTheDocument();
@@ -21,9 +20,7 @@ describe("Test Login Header", () => {
     const passwordLabel = screen.getByText("Senha");
     expect(passwordLabel).toBeInTheDocument();
 
-    const passwordInput = screen.getByRole("textbox", {
-      name: /senha/i,
-    });
+    const passwordInput = screen.getByLabelText(/senha/i);
     expect(passwordInput).toBeInTheDocument();
 
     const fogotPassword = screen.getByText(/esqueceu sua senha\?/i);
