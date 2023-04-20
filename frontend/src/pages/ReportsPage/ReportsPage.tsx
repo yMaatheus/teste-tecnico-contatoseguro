@@ -2,6 +2,7 @@ import { Form } from "../../components/Form";
 import { useQuery } from "@tanstack/react-query";
 import { getReports } from "../../services/report";
 import { ReportTable } from "./ReportTable";
+import { ReportCreateModal } from "./ReportCreateModal";
 
 export const ReportsPage = () => {
   const { data, refetch, isLoading } = useQuery({
@@ -11,15 +12,16 @@ export const ReportsPage = () => {
 
   const reports = data;
 
+  const table = !isLoading && (
+    <ReportTable reports={reports || []} refetch={refetch} />
+  );
+
   return (
     <div className="w-full h-full flex justify-center items-center">
       <Form
         columns={["Nome", "Endereço", "Cidade", "Estado"]}
-        table={
-          !isLoading && (
-            <ReportTable reports={reports || []} refetch={refetch} />
-          )
-        }
+        insertButton={<ReportCreateModal refetch={refetch} />}
+        table={table}
       />
     </div>
   );
