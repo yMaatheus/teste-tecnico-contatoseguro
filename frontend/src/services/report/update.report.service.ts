@@ -3,7 +3,7 @@ import { ReportType } from "../../types/ReportType";
 
 export const updateReport = async (
   id: number,
-  report: ReportType
+  report: Partial<ReportType>
 ): Promise<ReportType> => {
   const { data } = await api.put(`/report/${id}`, report);
 
