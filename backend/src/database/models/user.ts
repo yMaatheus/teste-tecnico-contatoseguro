@@ -11,6 +11,7 @@ export const UserZodSchema = z.object({
   phone: z.string().optional(),
   dateOfBirth: z.coerce.date().optional(),
   cityOfBirth: z.string().min(3).optional(),
+  companies: z.array(z.string()).optional(),
 }).strict();
 
 export default class User extends Model {
@@ -20,6 +21,8 @@ export default class User extends Model {
   public phone!: string;
   public dateOfBirth!: Date;
   public cityOfBirth!: string;
+
+  public readonly companies?: string[];
 
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;

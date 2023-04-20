@@ -18,6 +18,7 @@ export enum ErrorTypes {
   EmailNotFound = 'EmailNotFound',
   ExpiredOrInvalidToken = 'ExpiredOrInvalidToken',
   EntityNotFound = 'EntityNotFound',
+  EntityCreationError = 'EntityCreationError',
 }
 
 export const errorCatalog: ErrorCatalog = {
@@ -52,5 +53,9 @@ export const errorCatalog: ErrorCatalog = {
   EntityNotFound: {
     error: 'Entity not found',
     httpStatus: StatusCodes.NOT_FOUND,
+  },
+  EntityCreationError: {
+    error: 'Entity creation error',
+    httpStatus: StatusCodes.INTERNAL_SERVER_ERROR,
   }
 };
