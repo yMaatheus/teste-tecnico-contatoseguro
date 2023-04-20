@@ -3,7 +3,6 @@ import { useQuery } from "@tanstack/react-query";
 import { getReports } from "../../services/report";
 import { ReportTable } from "./ReportTable";
 import { ReportCreateModal } from "./ReportCreateModal";
-import useAppStore from "../../lib/store";
 
 export const ReportsPage = () => {
   const { data, refetch, isLoading } = useQuery({
@@ -11,19 +10,8 @@ export const ReportsPage = () => {
     queryFn: getReports,
   });
 
-  const [search, searchLabel, setSearch, setSearchLabel] = useAppStore(
-    (state) => [
-      state.search,
-      state.searchLabel,
-      state.setSearch,
-      state.setSearchLabel,
-    ]
-  );
-
-  const reports = data;
-
   const table = !isLoading && (
-    <ReportTable reports={reports || []} refetch={refetch} />
+    <ReportTable reports={data || []} refetch={refetch} />
   );
 
   return (
@@ -32,10 +20,7 @@ export const ReportsPage = () => {
         columns={["Nome", "Endereço", "Cidade", "Estado"]}
         insertButton={<ReportCreateModal refetch={refetch} />}
         table={table}
-        search={search}
-        searchLabel={searchLabel}
-        setSearch={setSearch}
-        setSearchLabel={setSearchLabel}
+        showSearch={false}
       />
     </div>
   );
