@@ -67,3 +67,85 @@ Aqui na Contato Seguro, utilizamos __Docker__ nos nossos ambientes, então será
 
 # Resposta do participante
 _Responda aqui quais foram suas dificuldades e explique a sua solução_
+
+## DecisionMake
+
+  Ao ler sobre o projeto resolvi
+
+## Dificuldades:
+
+
+
+## Rodando a aplicação
+
+Certifique-se que as portas `3000`, `3001` e `3002` estão livres. Na pasta onde está esse README da aplicação rode o comando:
+
+```bash
+$ npm run compose
+```
+
+Esse comando criará os containers do Banco de dados, Backend e Frontend.
+
+Aguarde o healthcheck acontecer, após isso as aplicações estarão online
+
+### Para efetuar o login informe o usuário e senha:
+
+```
+Email: admin@gmail.com
+Senha: secret_admin
+```
+
+> ## Bibliotecas e Ferramentas
+
+- React
+
+## Melhorias
+
+- Corrigir alguns tipos inconsistentes;
+- Testar as duas aplicações 100%;
+- Tornar o Modal de criação e o de Edição em um modal genérico para todas as entidades.
+- Poder desassociar um usuário de uma empresa ao editar um usuário.
+
+## Documentação da API
+
+### Auth
+#### Cria um usuáiro de autenticação
+
+```http
+  POST /auth/register
+```
+
+| Parâmetro   | Tipo       | Descrição                           |
+| :---------- | :--------- | :---------------------------------- |
+| `name` | `string` | **Obrigatório**. Nome do usuário de autenticação |
+| `email` | `string` | **Obrigatório**. Email do usuário de autenticação |
+| `password` | `string` | **Obrigatório**. Senha do usuário de autenticação |
+
+#### Retorna o status de autenticação na aplicação
+
+```http
+  GET /auth/status
+```
+
+#### Efetua o login
+
+```http
+  POST /auth/login
+```
+
+| Parâmetro   | Tipo       | Descrição                                   |
+| :---------- | :--------- | :------------------------------------------ |
+| `email`      | `string` | **Obrigatório**. Email para efetuar login |
+| `password`      | `string` | **Obrigatório**. Senha para efetuar login |
+
+#### Retorna um item
+
+```http
+  GET /api/items/${id}
+```
+
+| Parâmetro   | Tipo       | Descrição                                   |
+| :---------- | :--------- | :------------------------------------------ |
+| `id`      | `string` | **Obrigatório**. O ID do item que você quer |
+
+
