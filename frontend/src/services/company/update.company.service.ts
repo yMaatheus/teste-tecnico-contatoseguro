@@ -3,7 +3,7 @@ import { CompanyType } from "../../types/CompanyType";
 
 export const updateCompany = async (
   id: number,
-  company: CompanyType
+  company: Partial<CompanyType>
 ): Promise<CompanyType> => {
   const { data } = await api.put(`/company/${id}`, company);
 

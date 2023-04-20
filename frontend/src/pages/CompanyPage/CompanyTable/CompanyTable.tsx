@@ -3,6 +3,7 @@ import { GenericTable } from "../../../components/GenericTable";
 import { CompanyType } from "../../../types/CompanyType";
 import { QueryObserverResult } from "@tanstack/react-query";
 import { CompanyDetailModal } from "../CompanyDetailModal";
+import { CompanyEditModal } from "../CompanyEditModal";
 
 export const CompanyTable = ({
   companies = [],
@@ -38,8 +39,7 @@ export const CompanyTable = ({
             <CompanyDetailModal {...company} />
           </td>
           <td>
-            <CompanyDetailModal {...company} />
-            {/* <UserEditModal {...company} refetch={refetch} /> */}
+            <CompanyEditModal {...company} refetch={refetch} />
           </td>
           <td>
             <Button className="btn btn-ghost btn-xs">Remover</Button>
