@@ -17,26 +17,18 @@ export const UsersPage = () => {
   ]);
 
   const users = data //TODO - Refactor this
-    ?.filter((user) =>
-      searchLabel === "Nome"
-        ? user.name.toLowerCase().includes(search.toLowerCase())
-        : true
-    )
-    .filter((user) =>
-      searchLabel === "Email"
-        ? user.email.toLowerCase().includes(search.toLowerCase())
-        : true
-    )
-    .filter((user) =>
-      searchLabel === "Telefone"
-        ? user.phone?.toLowerCase().includes(search.toLowerCase())
-        : true
-    )
-    .filter((user) =>
-      searchLabel === "Cidade"
-        ? user.cityOfBirth?.toLowerCase().includes(search.toLowerCase())
-        : true
-    );
+    ?.filter((user) => {
+      if (searchLabel === "Nome") {
+        return user.name.toLowerCase().includes(search.toLowerCase());
+      } else if (searchLabel === "Email") {
+        return user.email.toLowerCase().includes(search.toLowerCase());
+      } else if (searchLabel === "Telefone") {
+        return user.phone?.toLowerCase().includes(search.toLowerCase());
+      } else if (searchLabel === "Cidade") {
+        return user.cityOfBirth?.toLowerCase().includes(search.toLowerCase());
+      }
+      return true;
+    });
 
   return (
     <div className="w-full h-full flex justify-center items-center">
