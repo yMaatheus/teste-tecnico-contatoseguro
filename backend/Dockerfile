@@ -11,6 +11,4 @@ COPY . .
 
 EXPOSE 3001
 
-RUN npx tsc
-
 CMD ["yarn", "start"]
