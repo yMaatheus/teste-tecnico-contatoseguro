@@ -9,11 +9,11 @@ import { updateCompany } from "../../../services/company";
 
 const schema = yup
   .object({
-    name: yup.string().required(),
-    cnpj: yup.string().required(),
-    address: yup.string().required(),
-    city: yup.string().required(),
-    state: yup.string().required(),
+    name: yup.string().min(6).required(),
+    cnpj: yup.string().min(14).required(),
+    address: yup.string().min(6).required(),
+    city: yup.string().min(6).required(),
+    state: yup.string().min(2).required(),
   })
   .required();
 type FormData = yup.InferType<typeof schema>;

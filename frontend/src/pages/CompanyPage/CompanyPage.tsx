@@ -11,10 +11,14 @@ export const CompaniesPage = () => {
     queryFn: getCompanies,
   });
 
-  const [search, searchLabel] = useAppStore((state) => [
-    state.search,
-    state.searchLabel,
-  ]);
+  const [search, searchLabel, setSearch, setSearchLabel] = useAppStore(
+    (state) => [
+      state.search,
+      state.searchLabel,
+      state.setSearch,
+      state.setSearchLabel,
+    ]
+  );
 
   const companies = data //TODO - Refactor this
     ?.filter((company) => {
@@ -39,6 +43,10 @@ export const CompaniesPage = () => {
         columns={["Nome", "Endereço", "Cidade", "Estado"]}
         insertButton={<CompanyCreateModal refetch={refetch} />}
         table={table}
+        search={search}
+        searchLabel={searchLabel}
+        setSearch={setSearch}
+        setSearchLabel={setSearchLabel}
       />
     </div>
   );

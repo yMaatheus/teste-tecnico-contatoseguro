@@ -7,6 +7,7 @@ import { closeModal } from "../../../utils/modal.util";
 import { QueryObserverResult } from "@tanstack/react-query";
 import { CompanyType } from "../../../types/CompanyType";
 import { createCompany } from "../../../services/company";
+import { CreateModalProps } from "../../../types/CreateModalProps";
 
 const schema = yup
   .object({
@@ -19,11 +20,9 @@ const schema = yup
   .required();
 type FormData = yup.InferType<typeof schema>;
 
-interface CreateModalProps {
-  refetch: () => Promise<QueryObserverResult<CompanyType[], unknown>>;
-}
-
-export const CompanyCreateModal = ({ refetch }: CreateModalProps) => {
+export const CompanyCreateModal = ({
+  refetch,
+}: CreateModalProps<CompanyType>) => {
   const {
     register,
     handleSubmit,

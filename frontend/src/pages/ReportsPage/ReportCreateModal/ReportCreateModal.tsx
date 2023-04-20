@@ -4,27 +4,31 @@ import { BiPlus } from "react-icons/bi";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { closeModal } from "../../../utils/modal.util";
-import { QueryObserverResult, useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { ReportType } from "../../../types/ReportType";
 import { getUsers } from "../../../services/user";
 import { getCompanies } from "../../../services/company";
 import { createReport } from "../../../services/report";
+import { CreateModalProps } from "../../../types/CreateModalProps";
 
 const schema = yup
   .object({
-    userId: yup.number().required(),
-    companyId: yup.number().required(),
-    description: yup.string().required(),
+    userId: yup.number().positive().required(),
+    companyId: yup.number().positive().required(),
+    description: yup.string().min(6).required(),
   })
   .required();
 type FormData = yup.InferType<typeof schema>;
 
-interface CreateModalProps {
-  refetch: () => Promise<QueryObserverResult<ReportType[], unknown>>;
-}
-
-export const ReportCreateModal = ({ refetch }: CreateModalProps) => {
-  const { register, handleSubmit, reset } = useForm<FormData>({
+export const ReportCreateModal = ({
+  refetch,
+}: CreateModalProps<ReportType>) => {
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<FormData>({
     resolver: yupResolver(schema),
   });
 
@@ -63,6 +67,8 @@ export const ReportCreateModal = ({ refetch }: CreateModalProps) => {
             cols={50}
             {...register("description")}
           ></textarea>
+
+          <span className="error-message">{errors.description?.message}</span>
         </div>
 
         <div className="flex justify-around">

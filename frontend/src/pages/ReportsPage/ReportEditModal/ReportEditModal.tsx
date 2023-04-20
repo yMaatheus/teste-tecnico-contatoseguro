@@ -9,7 +9,7 @@ import { updateReport } from "../../../services/report";
 
 const schema = yup
   .object({
-    description: yup.string().required(),
+    description: yup.string().min(6).required(),
   })
   .required();
 type FormData = yup.InferType<typeof schema>;
@@ -23,7 +23,11 @@ export const ReportEditModal = ({
   description,
   refetch,
 }: EditModalProps) => {
-  const { register, handleSubmit } = useForm<FormData>({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>({
     resolver: yupResolver(schema),
     values: {
       description,
@@ -54,6 +58,8 @@ export const ReportEditModal = ({
               cols={50}
               {...register("description")}
             ></textarea>
+
+            <span className="error-message">{errors.description?.message}</span>
           </section>
         </div>
 
