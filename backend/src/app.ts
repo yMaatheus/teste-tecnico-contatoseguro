@@ -14,7 +14,7 @@ const app = express();
 
 app.use(express.json());
 app.use(cors({
-  origin: FRONTEND_URL,
+  origin: 'https://contato-seguro.ymaatheus.me',
   credentials: true,
 }));
 app.use(cookieParser());

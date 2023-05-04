@@ -26,7 +26,7 @@ export class AuthController {
   public async login(req: Request, res: Response) {
     const { token, user } = await this.service.login(req.body);
 
-    res.cookie('token', token, { httpOnly: true, sameSite: 'strict' });
+    res.header('Access-Control-Allow-Origin', 'https://contato-seguro.ymaatheus.me').cookie('token', token, { httpOnly: true, sameSite: 'strict' });
 
     return res.status(StatusCodes.OK).json({ user, message: 'Login successful' });
   }
