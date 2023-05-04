@@ -17,7 +17,7 @@ export const Router = () => {
           element={user ? <Navigate to="/usuarios" replace /> : <LoginPage />}
         />
 
-        <Route element={<ProtectedLayout />}>
+        <Route path="*" element={<ProtectedLayout />}>
           <Route path="usuarios" element={<UsersPage />} />
           <Route path="empresas" element={<CompaniesPage />} />
           <Route path="relatorios" element={<ReportsPage />} />
